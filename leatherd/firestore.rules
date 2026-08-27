@@ -1,0 +1,113 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (request.auth.token.email == 'hlaahmedkamal@gmail.com' || exists(/databases/$(database)/documents/admins/$(request.auth.uid)));
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // --- Collections ---
+
+    // Products
+    match /products/{productId} {
+      function isValidProduct(data) {
+        return data.name is string && data.name.size() > 0 && data.name.size() <= 200
+          && data.price is number && data.price >= 0
+          && (data.category is string || !('category' in data))
+          && (!('compareAtPrice' in data) || data.compareAtPrice == null || data.compareAtPrice is number)
+          && data.status in ['Active', 'Draft', 'Out of Stock'];
+      }
+
+      allow read: if true;
+      allow create: if isAdmin() && isValidId(productId);
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Orders
+    match /orders/{orderId} {
+      function isValidOrder(data) {
+        return data.customerName is string && data.customerName.size() <= 100
+          && data.email is string && data.email.size() <= 100
+          && data.phone is string && data.phone.size() <= 20
+          && data.total is number && data.total >= 0
+          && data.items is list && data.items.size() > 0
+          && data.status in ['Pending', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled'];
+      }
+
+      allow read: if isAdmin();
+      allow create: if isValidOrder(incoming());
+      allow update: if isAdmin() && isValidOrder(incoming())
+        && (
+          // Action: Update Status only
+          incoming().diff(existing()).affectedKeys().hasOnly(['status']) ||
+          // Action: Full Edit
+          isAdmin()
+        );
+      allow delete: if isAdmin();
+    }
+
+    // Reviews
+    match /reviews/{reviewId} {
+      function isValidReview(data) {
+        return data.customerName is string && data.customerName.size() <= 100
+          && data.rating is number && data.rating >= 1 && data.rating <= 5
+          && data.comment is string && data.comment.size() <= 1000;
+      }
+
+      allow read: if true;
+      allow create: if isAdmin() && isValidReview(incoming()); // In this app, admin adds reviews
+      allow update: if isAdmin() && isValidReview(incoming());
+      allow delete: if isAdmin();
+    }
+
+    // Settings
+    match /settings/global {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Promo Codes
+    match /promo_codes/{codeId} {
+      allow read: if true; // Needed for checkout verification
+      allow write: if isAdmin();
+    }
+
+    // Customers
+    match /customers/{customerId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Admins
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if false; // Only manageable via console or specialized script
+    }
+    
+    // Test collection for connection health check
+    match /test/connection {
+      allow read: if true;
+    }
+  }
+}

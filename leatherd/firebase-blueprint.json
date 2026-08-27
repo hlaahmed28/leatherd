@@ -1,0 +1,164 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Product listing in the store",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "compareAtPrice": { "type": "number" },
+        "stockQuantity": { "type": "number" },
+        "colors": { "type": "array", "items": { "type": "string" } },
+        "sizes": { "type": "array", "items": { "type": "string" } },
+        "season": { "type": "string", "enum": ["Summer", "Winter", "All Year"] },
+        "image": { "type": "string" },
+        "images": { "type": "array", "items": { "type": "string" } },
+        "description": { "type": "string" },
+        "material": { "type": "string" },
+        "care": { "type": "string" },
+        "origin": { "type": "string" },
+        "isBestseller": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["Active", "Draft", "Out of Stock"] },
+        "category": { "type": "string", "enum": ["Heavy Pashmina", "Light Pashmina", "Shawls"] }
+      },
+      "required": ["id", "name", "price", "stockQuantity", "image", "description", "status", "category"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase order",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "orderNumber": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "customerName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "governorate": { "type": "string" },
+        "address": { "type": "string" },
+        "items": { "type": "array", "items": { "$ref": "#/entities/OrderItem" } },
+        "subtotal": { "type": "number" },
+        "shipping": { "type": "number" },
+        "total": { "type": "number" },
+        "paymentMethod": { "type": "string" },
+        "paymentScreenshot": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Confirmed", "Shipped", "Delivered", "Cancelled"] },
+        "notes": { "type": "string" }
+      },
+      "required": ["orderNumber", "customerName", "email", "phone", "governorate", "address", "items", "subtotal", "shipping", "total", "paymentMethod", "status"]
+    },
+    "OrderItem": {
+      "title": "OrderItem",
+      "description": "Item within an order",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "quantity": { "type": "number" },
+        "selectedColor": { "type": "string" },
+        "selectedSize": { "type": "string" }
+      }
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Customer product review",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "rating": { "type": "number" },
+        "comment": { "type": "string" },
+        "date": { "type": "string" },
+        "image": { "type": "string" },
+        "isFeatured": { "type": "boolean" }
+      },
+      "required": ["id", "customerName", "rating", "comment", "date"]
+    },
+    "AppSettings": {
+      "title": "AppSettings",
+      "description": "Global store settings",
+      "type": "object",
+      "properties": {
+        "storeName": { "type": "string" },
+        "whatsappNumber": { "type": "string" },
+        "address": { "type": "string" },
+        "shippingFeeStandard": { "type": "number" },
+        "governorateShippingFees": { "type": "object" },
+        "freeShippingThreshold": { "type": "number" },
+        "instagramUrl": { "type": "string" },
+        "facebookUrl": { "type": "string" },
+        "tiktokUrl": { "type": "string" },
+        "announcementBar": { "type": "string" },
+        "aboutText": { "type": "string" },
+        "heroImage": { "type": "string" },
+        "logo": { "type": "string" },
+        "categoryCovers": { "type": "object" }
+      }
+    },
+    "PromoCode": {
+      "title": "PromoCode",
+      "description": "Discount code",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "type": { "type": "string", "enum": ["percentage", "fixed"] },
+        "value": { "type": "number" },
+        "minOrder": { "type": "number" },
+        "expiryDate": { "type": "string" },
+        "usageLimit": { "type": "number" },
+        "usageCount": { "type": "number" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["code", "type", "value", "isActive"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "Customer record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "governorate": { "type": "string" },
+        "totalOrders": { "type": "number" },
+        "totalSpent": { "type": "number" },
+        "lastOrderDate": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Store products"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer orders"
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Product reviews"
+    },
+    "/settings/global": {
+      "schema": "AppSettings",
+      "description": "Store-wide settings"
+    },
+    "/promo_codes/{codeId}": {
+      "schema": "PromoCode",
+      "description": "Discount codes"
+    },
+    "/customers/{customerId}": {
+      "schema": "Customer",
+      "description": "Customer records"
+    },
+    "/admins/{adminId}": {
+      "schema": "object",
+      "description": "Allowed admin users"
+    }
+  }
+}
