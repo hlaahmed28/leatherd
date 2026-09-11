@@ -20,6 +20,11 @@ async function startServer() {
   app.use(express.json({ limit: "10mb" }));
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
+  app.use((req, _res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+  });
+
   // Initialize Resend lazily
   let resendClient: Resend | null = null;
   const getResend = () => {
