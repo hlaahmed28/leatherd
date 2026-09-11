@@ -46,17 +46,22 @@ async function startServer() {
       res.json(products);
     } catch (e: any) { res.status(500).json({ error: e.message }); }
   });
-  app.put('/api/products/:id', async (req, res) => {
+  app.put("/api/products/:id", async (req, res, next) => {
+    console.log("Product update started:", req.params.id);
+    console.log("Body fields:", Object.keys(req.body ?? {}));
+
     try {
-      const { id } = req.params;
-      const data = req.body;
-      const product = await prisma.product.upsert({
-        where: { id },
-        update: data,
-        create: { ...data, id },
+      const product = await prisma.product.update({
+        where: { id: req.params.id },
+        data: req.body,
       });
+
+      console.log("Product update completed:", req.params.id);
       res.json(product);
-    } catch (e: any) { res.status(500).json({ error: e.message }); }
+    } catch (error) {
+      console.error("Product update failed:", error);
+      next(error);
+    }
   });
   app.delete('/api/products/:id', async (req, res) => {
     try {
@@ -301,6 +306,16 @@ async function startServer() {
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }
+
+  app.use((error: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+    console.error("Unhandled server error:", error);
+
+    if (error?.type === "entity.too.large") {
+      return res.status(413).json({ error: "Request body is too large" });
+    }
+
+    res.status(500).json({ error: "Product update failed" });
+  });
 
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on http://localhost:${PORT}`);
