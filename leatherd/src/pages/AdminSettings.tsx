@@ -380,7 +380,7 @@ export function AdminSettings({ settings, setSettings, onLogout, activeSection, 
                 <p className="text-xs mt-1 opacity-80">{connectionStatus.message}</p>
                 {connectionStatus.success === false && (
                   <p className="text-[10px] mt-2 font-medium">
-                    Tip: Ensure your VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are correctly set in the Settings menu.
+                    Tip: Ensure your database is running, the DATABASE_URL in .env is correct, and the backend server is started.
                   </p>
                 )}
               </div>
