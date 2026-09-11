@@ -263,7 +263,7 @@ export function AdminPromoCodes({ promoCodes, setPromoCodes, settings, onLogout,
                     value={formData.code || ''}
                     onChange={(e) => setFormData({ ...formData, code: e.target.value.toUpperCase() })}
                     className="w-full px-4 py-3 bg-[#faf8f5] border border-[#e8ddd0] rounded-xl focus:outline-none focus:border-[#c9a96e] font-bold tracking-widest"
-                    placeholder="e.g. RIFFA20"
+                    placeholder="e.g. LEATHERD20"
                   />
                 </div>
 

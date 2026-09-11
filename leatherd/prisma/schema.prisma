@@ -1,0 +1,113 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id             String      @id @default(uuid())
+  name           String
+  price          Float
+  compareAtPrice Float?
+  stockQuantity  Int
+  colors         Json
+  sizes          Json
+  season         String
+  image          String
+  images         Json
+  description    String      @db.Text
+  material       String
+  care           String
+  origin         String
+  isBestseller   Boolean     @default(false)
+  status         String
+  category       String
+  orderItems     OrderItem[]
+}
+
+model Order {
+  id                String      @id @default(uuid())
+  orderNumber       String      @unique
+  date              DateTime    @default(now())
+  customerName      String
+  email             String
+  phone             String
+  governorate       String
+  address           String      @db.Text
+  items             OrderItem[]
+  subtotal          Float
+  shipping          Float
+  total             Float
+  paymentMethod     String
+  paymentScreenshot String?
+  status            String
+  notes             String?     @db.Text
+}
+
+model OrderItem {
+  id            String   @id @default(uuid())
+  orderId       String
+  order         Order    @relation(fields: [orderId], references: [id])
+  productId     String?
+  product       Product? @relation(fields: [productId], references: [id])
+  name          String
+  price         Float
+  quantity      Int
+  selectedColor String
+  selectedSize  String
+}
+
+model Customer {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  phone         String
+  governorate   String
+  totalOrders   Int      @default(0)
+  totalSpent    Float    @default(0)
+  lastOrderDate DateTime @default(now())
+}
+
+model PromoCode {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  type        String
+  value       Float
+  minOrder    Float
+  expiryDate  DateTime
+  usageLimit  Int
+  usageCount  Int      @default(0)
+  isActive    Boolean  @default(true)
+}
+
+model Review {
+  id           String   @id @default(uuid())
+  customerName String
+  rating       Int
+  comment      String   @db.Text
+  date         DateTime @default(now())
+  image        String?
+  isFeatured   Boolean  @default(false)
+}
+
+model AppSettings {
+  id                      String @id @default("global")
+  storeName               String
+  whatsappNumber          String
+  address                 String @db.Text
+  shippingFeeStandard     Float
+  governorateShippingFees Json
+  freeShippingThreshold   Float
+  instagramUrl            String
+  facebookUrl             String
+  tiktokUrl               String
+  announcementBar         String @db.Text
+  aboutText               String @db.Text
+  heroImage               String
+  logo                    String
+  categories              Json
+  categoryCovers          Json
+}

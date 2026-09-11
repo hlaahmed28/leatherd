@@ -23,17 +23,17 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage, settings }) => {
               {settings.logo && !logoError ? (
                 <img 
                   src={settings.logo} 
-                  alt="RIFFA Logo" 
-                  className="h-16 w-auto object-contain brightness-0 invert"
+                  alt="LEATHERD Logo" 
+                  className="h-16 w-auto object-contain rounded-sm"
                   referrerPolicy="no-referrer"
                   onError={() => setLogoError(true)}
                 />
               ) : (
-                <h1 className="text-2xl font-serif font-bold text-white tracking-[0.2em]">RIFFA</h1>
+                <h1 className="text-2xl font-serif font-bold text-white tracking-[0.2em]">LEATHERD</h1>
               )}
             </div>
             <p className="text-offwhite/60 text-sm leading-relaxed max-w-xs">
-              Luxury pashmina brand based in Egypt, weaving timeless elegance into every thread. Handcrafted with heritage and passion.
+              Luxury leather goods brand based in Egypt, crafting timeless elegance into every stitch. Handcrafted with heritage and passion.
             </p>
             <div className="flex space-x-4">
               <a href={settings.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-offwhite/40 hover:text-gold transition-colors"><Instagram size={20} /></a>
@@ -74,7 +74,7 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage, settings }) => {
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={16} className="text-gold" />
-                <span>hello@riffa.eg</span>
+                <span>hello@leatherd.eg</span>
               </li>
               <li className="flex items-center space-x-3">
                 <MapPin size={16} className="text-gold" />
@@ -92,7 +92,7 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage, settings }) => {
           </div>
           <div className="flex items-center gap-4">
             <div className="text-[10px] tracking-[0.2em] uppercase text-offwhite/30 text-center md:text-right">
-              © 2026 RIFFA. Made in Egypt. All Rights Reserved.
+              © 2026 LEATHERD. Made in Egypt. All Rights Reserved.
             </div>
             <button 
               onClick={() => setCurrentPage('admin')} 

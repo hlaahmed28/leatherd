@@ -78,7 +78,7 @@ export function AdminAnalytics({ orders, products, customers, settings, onLogout
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-cormorant font-bold text-[#2d2535]">Analytics Dashboard</h1>
-            <p className="text-sm text-[#2d2535]/60">Real-time performance metrics for RIFFA Style</p>
+            <p className="text-sm text-[#2d2535]/60">Real-time performance metrics for LEATHERD Style</p>
           </div>
         </div>
 

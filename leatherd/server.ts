@@ -1,4 +1,7 @@
 import express from 'express';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 import { createServer as createViteServer } from 'vite';
 import { Resend } from 'resend';
 import path from 'path';
@@ -27,6 +30,166 @@ async function startServer() {
   };
 
   // API Routes
+  // --- Products ---
+  app.get('/api/products', async (req, res) => {
+    try {
+      const products = await prisma.product.findMany({ orderBy: { name: 'asc' } });
+      res.json(products);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+  app.put('/api/products/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+      const product = await prisma.product.upsert({
+        where: { id },
+        update: data,
+        create: { ...data, id },
+      });
+      res.json(product);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+  app.delete('/api/products/:id', async (req, res) => {
+    try {
+      await prisma.product.delete({ where: { id: req.params.id } });
+      res.json({ success: true });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // --- Orders ---
+  app.get('/api/orders', async (req, res) => {
+    try {
+      const orders = await prisma.order.findMany({
+        orderBy: { date: 'desc' },
+        include: { items: true }
+      });
+      res.json(orders);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+  app.post('/api/orders', async (req, res) => {
+    try {
+      const { items, ...orderData } = req.body;
+      const order = await prisma.order.create({
+        data: {
+          ...orderData,
+          items: { create: items }
+        },
+        include: { items: true }
+      });
+      res.json(order);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+  app.patch('/api/orders/:id/status', async (req, res) => {
+    try {
+      const { status } = req.body;
+      await prisma.order.update({ where: { id: req.params.id }, data: { status } });
+      res.json({ success: true });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // --- Settings ---
+  app.get('/api/settings', async (req, res) => {
+    try {
+      const settings = await prisma.appSettings.findUnique({ where: { id: 'global' } });
+      res.json(settings || null);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+  app.put('/api/settings', async (req, res) => {
+    try {
+      const data = req.body;
+      const settings = await prisma.appSettings.upsert({
+        where: { id: 'global' },
+        update: data,
+        create: { ...data, id: 'global' },
+      });
+      res.json(settings);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // --- Reviews ---
+  app.get('/api/reviews', async (req, res) => {
+    try {
+      const reviews = await prisma.review.findMany({ orderBy: { date: 'desc' } });
+      res.json(reviews);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+  app.put('/api/reviews/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+      const review = await prisma.review.upsert({
+        where: { id },
+        update: data,
+        create: { ...data, id },
+      });
+      res.json(review);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+  app.delete('/api/reviews/:id', async (req, res) => {
+    try {
+      await prisma.review.delete({ where: { id: req.params.id } });
+      res.json({ success: true });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // --- Promo Codes ---
+  app.get('/api/promo-codes', async (req, res) => {
+    try {
+      const codes = await prisma.promoCode.findMany({ orderBy: { code: 'asc' } });
+      res.json(codes);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+  app.put('/api/promo-codes/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+      const code = await prisma.promoCode.upsert({
+        where: { id },
+        update: data,
+        create: { ...data, id },
+      });
+      res.json(code);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+  app.delete('/api/promo-codes/:id', async (req, res) => {
+    try {
+      await prisma.promoCode.delete({ where: { id: req.params.id } });
+      res.json({ success: true });
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // --- Customers ---
+  app.get('/api/customers', async (req, res) => {
+    try {
+      const customers = await prisma.customer.findMany({ orderBy: { totalSpent: 'desc' } });
+      res.json(customers);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+  app.put('/api/customers/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+      const customer = await prisma.customer.upsert({
+        where: { id },
+        update: data,
+        create: { ...data, id },
+      });
+      res.json(customer);
+    } catch (e: any) { res.status(500).json({ error: e.message }); }
+  });
+
+  // --- Auth ---
+  app.post('/api/login', async (req, res) => {
+    const { password } = req.body;
+    // Simple admin password check
+    if (password === (process.env.ADMIN_PASSWORD || 'admin')) {
+      res.json({ success: true });
+    } else {
+      res.status(401).json({ error: 'Invalid password' });
+    }
+  });
+
+  // Email API Route
   app.post('/api/send-confirmation', async (req, res) => {
     const { order, items } = req.body;
 
@@ -46,7 +209,7 @@ async function startServer() {
       `).join('');
 
       const { data, error } = await resend.emails.send({
-        from: 'RIFFA <onboarding@resend.dev>', // Replace with your verified domain in production
+        from: 'LEATHERD <onboarding@resend.dev>', // Replace with your verified domain in production
         to: [order.email],
         subject: `Order Confirmation - ${order.orderNumber}`,
         html: `
@@ -96,8 +259,8 @@ async function startServer() {
             </div>
 
             <div style="margin-top: 40px; text-align: center; border-top: 1px solid #e8ddd0; padding-top: 20px;">
-              <p style="color: #999; font-size: 12px;">If you have any questions, please contact us at hello@riffa.eg or via WhatsApp.</p>
-              <p style="color: #2d2535; font-weight: bold;">RIFFA Luxury Pashmina</p>
+              <p style="color: #999; font-size: 12px;">If you have any questions, please contact us at hello@leatherd.eg or via WhatsApp.</p>
+              <p style="color: #2d2535; font-weight: bold;">LEATHERD Luxury Pashmina</p>
             </div>
           </div>
         `,

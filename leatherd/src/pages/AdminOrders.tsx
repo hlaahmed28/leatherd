@@ -212,7 +212,7 @@ export function AdminOrders({ orders, setOrders, products, setProducts, customer
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `riffa_orders_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute("download", `leatherd_orders_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

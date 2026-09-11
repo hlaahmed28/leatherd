@@ -114,7 +114,7 @@ export const GOVERNORATES = [
 export const INITIAL_PRODUCTS: Product[] = [
   {
     id: '1',
-    name: 'Desert Rose Pashmina',
+    name: 'Desert Rose Leather Tote',
     price: 850,
     compareAtPrice: 1000,
     stockQuantity: 15,
@@ -123,17 +123,17 @@ export const INITIAL_PRODUCTS: Product[] = [
     season: 'All Year',
     image: 'https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?auto=format&fit=crop&q=80&w=800',
     images: ['https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?auto=format&fit=crop&q=80&w=800'],
-    description: 'A soft, blush pink pashmina that captures the delicate beauty of a desert bloom.',
-    material: '70% Cashmere, 30% Silk',
-    care: 'Dry clean only',
-    origin: 'Hand-woven in Cairo, Egypt',
+    description: 'A soft, blush pink tote bag that captures the delicate beauty of a desert bloom.',
+    material: 'Full-Grain Leather',
+    care: 'Wipe clean',
+    origin: 'Hand-crafted in Cairo, Egypt',
     isBestseller: true,
     status: 'Active',
-    category: 'Heavy Pashmina'
+    category: 'Bags'
   },
   {
     id: '2',
-    name: 'Nile Night Pashmina',
+    name: 'Nile Night Cardholder',
     price: 950,
     stockQuantity: 8,
     colors: ['Deep Plum', 'Charcoal', 'Midnight Blue'],
@@ -142,16 +142,16 @@ export const INITIAL_PRODUCTS: Product[] = [
     image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=800',
     images: ['https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=800'],
     description: 'Rich deep plum tones inspired by the mysterious beauty of the Nile at midnight.',
-    material: '100% Fine Wool',
-    care: 'Hand wash cold',
+    material: '100% Genuine Leather',
+    care: 'Leather conditioner recommended',
     origin: 'Artisanal workshop, Luxor',
     isBestseller: true,
     status: 'Active',
-    category: 'Heavy Pashmina'
+    category: 'Bags'
   },
   {
     id: '3',
-    name: 'Golden Hour Wrap',
+    name: 'Golden Hour Cardholder',
     price: 1100,
     stockQuantity: 4,
     colors: ['Warm Gold', 'Amber', 'Bronze'],
@@ -159,16 +159,16 @@ export const INITIAL_PRODUCTS: Product[] = [
     season: 'Summer',
     image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=800',
     images: ['https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=800'],
-    description: 'A shimmering gold wrap that glows like the Egyptian sun during the golden hour.',
-    material: '60% Silk, 40% Cotton',
-    care: 'Delicate wash',
-    origin: 'Traditional looms, Giza',
+    description: 'A shimmering gold cardholder that glows like the Egyptian sun during the golden hour.',
+    material: 'Premium Leather',
+    care: 'Wipe clean',
+    origin: 'Hand-stitched, Giza',
     status: 'Active',
-    category: 'Light Pashmina'
+    category: 'Cardholders'
   },
   {
     id: '4',
-    name: 'Cairo Fog Shawl',
+    name: 'Cairo Fog Laptop Sleeve',
     price: 780,
     stockQuantity: 20,
     colors: ['Soft Grey', 'Mist', 'Silver'],
@@ -176,16 +176,16 @@ export const INITIAL_PRODUCTS: Product[] = [
     season: 'Winter',
     image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&q=80&w=800',
     images: ['https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&q=80&w=800'],
-    description: 'A lightweight grey shawl, perfect for the cool, misty mornings of Cairo.',
-    material: '100% Egyptian Cotton',
-    care: 'Machine wash delicate',
-    origin: 'Modern textile mill, Alexandria',
+    description: 'A minimalist grey sleeve, perfect for the cool, misty mornings of Cairo.',
+    material: 'Suede and Leather',
+    care: 'Specialist clean',
+    origin: 'Modern workshop, Alexandria',
     status: 'Active',
-    category: 'Shawls'
+    category: 'Sleeves'
   },
   {
     id: '5',
-    name: 'Ivory Bloom Pashmina',
+    name: 'Ivory Bloom Tote',
     price: 900,
     stockQuantity: 12,
     colors: ['Off White', 'Pearl', 'Ivory'],
@@ -193,17 +193,17 @@ export const INITIAL_PRODUCTS: Product[] = [
     season: 'All Year',
     image: 'https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&q=80&w=800',
     images: ['https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&q=80&w=800'],
-    description: 'Pristine off-white pashmina, a timeless classic for any elegant occasion.',
-    material: '80% Cashmere, 20% Silk',
-    care: 'Dry clean recommended',
+    description: 'Pristine off-white tote, a timeless classic for any elegant occasion.',
+    material: 'Soft Pebble Leather',
+    care: 'Leather wipe',
     origin: 'Hand-dyed in Cairo',
     isBestseller: true,
     status: 'Active',
-    category: 'Light Pashmina'
+    category: 'Cardholders'
   },
   {
     id: '6',
-    name: 'Midnight Garden Wrap',
+    name: 'Midnight Garden Bag',
     price: 1050,
     stockQuantity: 2,
     colors: ['Forest Green', 'Emerald', 'Olive'],
@@ -211,16 +211,16 @@ export const INITIAL_PRODUCTS: Product[] = [
     season: 'Winter',
     image: 'https://images.unsplash.com/photo-1520006403909-838d6b92c22e?auto=format&fit=crop&q=80&w=800',
     images: ['https://images.unsplash.com/photo-1520006403909-838d6b92c22e?auto=format&fit=crop&q=80&w=800'],
-    description: 'Deep forest green wrap with intricate patterns inspired by hidden Egyptian gardens.',
-    material: '100% Merino Wool',
-    care: 'Dry clean only',
-    origin: 'Heritage weavers, Sohag',
+    description: 'Deep forest green bag with elegant stitching inspired by hidden Egyptian gardens.',
+    material: '100% Genuine Leather',
+    care: 'Condition regularly',
+    origin: 'Heritage craftsmen, Sohag',
     status: 'Active',
-    category: 'Heavy Pashmina'
+    category: 'Bags'
   },
   {
     id: '7',
-    name: 'Sahara Dust Pashmina',
+    name: 'Sahara Dust Sleeve',
     price: 870,
     stockQuantity: 10,
     colors: ['Camel Brown', 'Beige', 'Tan'],
@@ -228,16 +228,16 @@ export const INITIAL_PRODUCTS: Product[] = [
     season: 'All Year',
     image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=800',
     images: ['https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=800'],
-    description: 'The warm, earthy tones of the Sahara desert in a soft, versatile pashmina.',
-    material: '50% Cashmere, 50% Wool',
-    care: 'Hand wash cold',
+    description: 'The warm, earthy tones of the Sahara desert in a sleek, versatile sleeve.',
+    material: 'Nubuck Leather',
+    care: 'Suede brush',
     origin: 'Sustainable workshop, Siwa Oasis',
     status: 'Active',
-    category: 'Light Pashmina'
+    category: 'Cardholders'
   },
   {
     id: '8',
-    name: 'Royal Indigo Shawl',
+    name: 'Royal Indigo Sleeve',
     price: 1200,
     stockQuantity: 6,
     colors: ['Deep Blue', 'Navy', 'Cobalt'],
@@ -245,13 +245,13 @@ export const INITIAL_PRODUCTS: Product[] = [
     season: 'Winter',
     image: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&q=80&w=800',
     images: ['https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&q=80&w=800'],
-    description: 'A majestic deep blue shawl that exudes royalty and sophistication.',
-    material: '100% Pure Silk',
-    care: 'Dry clean only',
-    origin: 'Silk masters, Damietta',
+    description: 'A majestic deep blue sleeve that exudes royalty and sophistication.',
+    material: 'Top-Grain Leather',
+    care: 'Wipe clean',
+    origin: 'Leather masters, Damietta',
     isBestseller: true,
     status: 'Active',
-    category: 'Shawls'
+    category: 'Sleeves'
   }
 ];
 
@@ -260,7 +260,7 @@ export const INITIAL_REVIEWS: Review[] = [
     id: '1',
     customerName: 'Laila Mahmoud',
     rating: 5,
-    comment: 'The quality of the Desert Rose Pashmina is absolutely stunning. It feels so soft and luxurious!',
+    comment: 'The quality of the Desert Rose Leather Tote is absolutely stunning. It feels so soft and luxurious!',
     date: '2024-03-15',
     isFeatured: true
   },
@@ -268,7 +268,7 @@ export const INITIAL_REVIEWS: Review[] = [
     id: '2',
     customerName: 'Ahmed Hassan',
     rating: 5,
-    comment: 'Bought a shawl for my wife and she loves it. The packaging was also very elegant.',
+    comment: 'Bought a cardholder for my wife and she loves it. The packaging was also very elegant.',
     date: '2024-03-10',
     isFeatured: true
   },
@@ -283,7 +283,7 @@ export const INITIAL_REVIEWS: Review[] = [
 ];
 
 export const INITIAL_SETTINGS: AppSettings = {
-  storeName: "RIFFA Style",
+  storeName: "LEATHERD Style",
   whatsappNumber: "+201001234567",
   address: "Zamalek, Cairo, Egypt",
   shippingFeeStandard: 50,
@@ -316,17 +316,17 @@ export const INITIAL_SETTINGS: AppSettings = {
     "Sohag": 100
   },
   freeShippingThreshold: 2000,
-  instagramUrl: "https://instagram.com/riffa",
-  facebookUrl: "https://facebook.com/riffa",
-  tiktokUrl: "https://tiktok.com/@riffa",
+  instagramUrl: "https://instagram.com/leatherd",
+  facebookUrl: "https://facebook.com/leatherd",
+  tiktokUrl: "https://tiktok.com/@leatherd",
   announcementBar: "Free shipping on orders above 2000 EGP! Shop the new Summer Collection now.",
-  aboutText: "At RIFFA, we believe that every pashmina tells a story. Our journey began in the heart of Cairo, where we sought to revive the ancient art of Egyptian weaving. Each piece is a testament to the skill of our local artisans, combining traditional techniques with modern luxury.",
+  aboutText: "At LEATHERD, we believe that every piece tells a story. Our journey began in the heart of Cairo, where we sought to revive the ancient art of leathercraft. Each item is a testament to the skill of our local artisans, combining traditional techniques with modern luxury.",
   heroImage: "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?auto=format&fit=crop&q=80&w=1920",
-  logo: "https://storage.googleapis.com/aistudio-build-assets/riffa-logo.png",
-  categories: ['Heavy Pashmina', 'Light Pashmina', 'Shawls'],
+  logo: "/logo.jpg",
+  categories: ['Bags', 'Cardholders', 'Sleeves'],
   categoryCovers: {
-    'Heavy Pashmina': 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=800',
-    'Light Pashmina': 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=800',
-    'Shawls': 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&q=80&w=800'
+    'Bags': 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=800',
+    'Cardholders': 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=800',
+    'Sleeves': 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&q=80&w=800'
   }
 };

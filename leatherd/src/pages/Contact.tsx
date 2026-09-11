@@ -70,8 +70,8 @@ export const Contact: React.FC<ContactProps> = ({ setCurrentPage }) => {
                 <div className="space-y-2">
                   <h3 className="text-xl font-serif tracking-wide text-plum">Email Support</h3>
                   <p className="text-sm text-plum/50 leading-relaxed">
-                    hello@riffa.eg <br />
-                    concierge@riffa.eg
+                    hello@leatherd.eg <br />
+                    concierge@leatherd.eg
                   </p>
                 </div>
               </div>

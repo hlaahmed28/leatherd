@@ -15,7 +15,7 @@ export const ShippingReturns: React.FC<ShippingReturnsProps> = ({ setCurrentPage
       <div className="text-center space-y-4">
         <h4 className="text-xs tracking-[0.4em] uppercase font-bold text-gold">Customer Care</h4>
         <h1 className="text-5xl md:text-6xl font-serif tracking-tighter">Shipping & Returns</h1>
-        <p className="text-plum/50 text-sm tracking-wide max-w-md mx-auto">Everything you need to know about receiving your RIFFA pashmina.</p>
+        <p className="text-plum/50 text-sm tracking-wide max-w-md mx-auto">Everything you need to know about receiving your LEATHERD piece.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-12">
@@ -35,7 +35,7 @@ export const ShippingReturns: React.FC<ShippingReturnsProps> = ({ setCurrentPage
                 <h4 className="text-xs tracking-widest uppercase font-bold">Cairo & Giza</h4>
               </div>
               <p className="text-sm text-plum/60 leading-relaxed">
-                Delivery takes <span className="font-bold text-plum">3–7 business days</span>. Our specialized couriers ensure your pashmina arrives in perfect condition.
+                Delivery takes <span className="font-bold text-plum">3–7 business days</span>. Our specialized couriers ensure your piece arrives in perfect condition.
               </p>
             </div>
             <div className="space-y-4">
@@ -77,7 +77,7 @@ export const ShippingReturns: React.FC<ShippingReturnsProps> = ({ setCurrentPage
                 Returns are <span className="text-red-600 underline underline-offset-4">only accepted at the moment of delivery</span> — while the courier is still at your door. 
               </p>
               <p className="text-xs text-plum/60 leading-relaxed">
-                We encourage you to inspect your pashmina thoroughly upon arrival. Once the courier has left your premises, no returns, exchanges, or refunds can be processed under any circumstances. This policy ensures the integrity and exclusivity of our pieces.
+                We encourage you to inspect your piece thoroughly upon arrival. Once the courier has left your premises, no returns, exchanges, or refunds can be processed under any circumstances. This policy ensures the integrity and exclusivity of our pieces.
               </p>
             </div>
           </div>

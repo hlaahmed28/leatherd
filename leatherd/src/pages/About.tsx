@@ -28,7 +28,7 @@ export const About: React.FC<AboutProps> = ({ setCurrentPage }) => {
             transition={{ duration: 1, ease: "easeOut" }}
             className="space-y-4"
           >
-            <h4 className="text-xs tracking-[0.4em] uppercase font-bold text-gold">The RIFFA Story</h4>
+            <h4 className="text-xs tracking-[0.4em] uppercase font-bold text-gold">The LEATHERD Story</h4>
             <h1 className="text-6xl md:text-8xl font-serif tracking-tighter leading-tight">
               Woven with <br />
               <span className="italic font-light">Heritage</span>
@@ -51,10 +51,10 @@ export const About: React.FC<AboutProps> = ({ setCurrentPage }) => {
             
             <div className="space-y-6 text-plum/70 leading-relaxed text-lg">
               <p>
-                RIFFA was born out of a deep appreciation for the rich textile heritage of Egypt. Our founder, inspired by the intricate patterns and timeless elegance of traditional Egyptian weaving, set out to create a brand that would bridge the gap between ancient craftsmanship and modern luxury.
+                LEATHERD was born out of a deep appreciation for the rich heritage of craftsmanship in Egypt. Our founder, inspired by the intricate techniques and timeless elegance of traditional leatherworking, set out to create a brand that would bridge the gap between ancient artistry and modern luxury.
               </p>
               <p>
-                Based in the heart of Cairo, we work closely with local artisans who have honed their skills over generations. Every RIFFA pashmina is a labor of love, meticulously handcrafted using the finest materials, from pure Egyptian cotton to the softest cashmere and silk.
+                Based in the heart of Cairo, we work closely with local artisans who have honed their skills over generations. Every LEATHERD piece is a labor of love, meticulously handcrafted using the finest full-grain and premium leathers.
               </p>
               <p>
                 Our mission is simple: to provide our clients with pieces that are not only beautiful but also carry a piece of Egyptian history. We believe in slow fashion, quality over quantity, and the enduring beauty of handcrafted elegance.
@@ -105,7 +105,7 @@ export const About: React.FC<AboutProps> = ({ setCurrentPage }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             {[
-              { icon: <Heart size={32} />, title: 'Passion', desc: 'We are deeply passionate about our heritage and the art of weaving.' },
+              { icon: <Heart size={32} />, title: 'Passion', desc: 'We are deeply passionate about our heritage and the art of leathercraft.' },
               { icon: <ShieldCheck size={32} />, title: 'Quality', desc: 'We never compromise on the quality of our materials or craftsmanship.' },
               { icon: <Globe size={32} />, title: 'Sustainability', desc: 'We support local communities and promote ethical production practices.' }
             ].map((value, idx) => (
@@ -129,9 +129,9 @@ export const About: React.FC<AboutProps> = ({ setCurrentPage }) => {
       {/* Call to Action */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-10">
         <div className="space-y-4">
-          <h2 className="text-4xl font-serif tracking-tight">Experience RIFFA</h2>
+          <h2 className="text-4xl font-serif tracking-tight">Experience LEATHERD</h2>
           <p className="text-plum/50 text-sm tracking-wide max-w-md mx-auto leading-relaxed">
-            Discover the perfect pashmina that resonates with your style and our heritage.
+            Discover the perfect piece that resonates with your style and our heritage.
           </p>
         </div>
         <button 

@@ -27,7 +27,7 @@ export const Confirmation: React.FC<ConfirmationProps> = ({ setCurrentPage }) =>
         <h4 className="text-xs tracking-[0.4em] uppercase font-bold text-gold">Order Placed</h4>
         <h1 className="text-5xl md:text-6xl font-serif tracking-tighter">Thank You for Your Trust</h1>
         <p className="text-plum/50 text-sm tracking-wide max-w-md mx-auto leading-relaxed">
-          Your order <span className="font-bold text-plum">#RF-{orderNumber}</span> has been placed successfully. We will begin preparing your RIFFA pashmina shortly.
+          Your order <span className="font-bold text-plum">#RF-{orderNumber}</span> has been placed successfully. We will begin preparing your LEATHERD piece shortly.
           <br />
           <span className="text-[10px] text-gold font-bold uppercase tracking-widest mt-2 block">
             If you chose Cash on Delivery, please have the exact amount ready for the courier.

@@ -16,7 +16,7 @@ interface AdminSettingsProps {
 export function AdminSettings({ settings, setSettings, onLogout, activeSection, setActiveSection, showToast }: AdminSettingsProps) {
   const [formData, setFormData] = useState<AppSettings>({
     ...settings,
-    categories: settings.categories || ['Heavy Pashmina', 'Light Pashmina', 'Shawls']
+    categories: settings.categories || ['Bags', 'Cardholders', 'Sleeves']
   });
   const [newCategory, setNewCategory] = useState('');
   const [isSaving, setIsSaving] = useState(false);

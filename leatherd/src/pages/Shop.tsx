@@ -57,7 +57,7 @@ export const Shop: React.FC<ShopProps> = ({
         <div className="relative z-10 text-center space-y-4">
           <h4 className="text-xs tracking-[0.4em] uppercase font-bold text-gold">The Collection</h4>
           <h1 className="text-5xl md:text-7xl font-serif tracking-tighter text-offwhite">
-            {selectedCategory === 'All' ? 'Explore RIFFA' : selectedCategory}
+            {selectedCategory === 'All' ? 'Explore LEATHERD' : selectedCategory}
           </h1>
         </div>
       </div>

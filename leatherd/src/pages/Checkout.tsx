@@ -106,7 +106,7 @@ export const Checkout: React.FC<CheckoutProps> = ({
       <div className="text-center space-y-4">
         <h4 className="text-xs tracking-[0.4em] uppercase font-bold text-gold">Secure Checkout</h4>
         <h1 className="text-5xl md:text-6xl font-serif tracking-tighter">Finalize Order</h1>
-        <p className="text-plum/50 text-sm tracking-wide">Complete your details to receive your RIFFA pashmina.</p>
+        <p className="text-plum/50 text-sm tracking-wide">Complete your details to receive your LEATHERD piece.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-20">
@@ -209,7 +209,7 @@ export const Checkout: React.FC<CheckoutProps> = ({
                 <div className="text-gold"><Building2 size={24} /></div>
                 <div>
                   <h4 className="text-xs tracking-widest uppercase font-bold text-plum">Instapay</h4>
-                  <p className="text-[8px] text-plum/40">riffa@instapay</p>
+                  <p className="text-[8px] text-plum/40">leatherd@instapay</p>
                 </div>
               </div>
               <div 

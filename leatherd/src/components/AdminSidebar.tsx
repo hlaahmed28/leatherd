@@ -43,13 +43,13 @@ export function AdminSidebar({ activeSection, setActiveSection, onLogout, logo }
         {logo && !logoError ? (
           <img 
             src={logo} 
-            alt="RIFFA" 
-            className="h-10 w-auto object-contain brightness-0 invert" 
+            alt="Leatherd" 
+            className="h-10 w-auto object-contain rounded-sm" 
             referrerPolicy="no-referrer"
             onError={() => setLogoError(true)}
           />
         ) : (
-          <h1 className="text-2xl font-cormorant font-bold text-[#c9a96e] tracking-wider">RIFFA</h1>
+          <h1 className="text-2xl font-cormorant font-bold text-[#c9a96e] tracking-wider">LEATHERD</h1>
         )}
         <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mt-1">Management Suite</p>
       </div>

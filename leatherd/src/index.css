@@ -5,11 +5,11 @@
   --font-serif: "Cormorant Garamond", serif;
   --font-sans: "Josefin Sans", sans-serif;
   
-  --color-sand: #e8ddd0;
-  --color-plum: #2d2535;
-  --color-gold: #c9a96e;
-  --color-offwhite: #faf8f5;
-  --color-charcoal: #1a1a1a;
+  --color-sand: #e8d0b3;
+  --color-plum: #4a2c10;
+  --color-gold: #8c5535;
+  --color-offwhite: #ffffff;
+  --color-charcoal: #2a1608;
 }
 
 @layer base {

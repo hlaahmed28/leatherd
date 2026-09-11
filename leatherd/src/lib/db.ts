@@ -1,37 +1,40 @@
-import { collection, doc, getDocs, getDoc, setDoc, updateDoc, deleteDoc, query, orderBy, limit, addDoc } from 'firebase/firestore';
-import { db as firestore } from './firebase';
 import { Product, Order, OrderItem, PromoCode, Review, AppSettings, Customer } from '../types';
 
 export const db = {
   // --- Products ---
   async getProducts() {
     try {
-      const q = query(collection(firestore, 'products'), orderBy('name', 'asc'));
-      const snapshot = await getDocs(q);
-      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Product[];
+      const response = await fetch('/api/products');
+      if (!response.ok) throw new Error('Failed to fetch products');
+      return await response.json() as Product[];
     } catch (error) {
-      console.error('Firebase getProducts error:', error);
+      console.error('getProducts error:', error);
       throw error;
     }
   },
 
   async updateProduct(product: Product) {
     try {
-      const docRef = doc(firestore, 'products', product.id);
-      await setDoc(docRef, product);
-      return product;
+      const response = await fetch(`/api/products/${product.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product),
+      });
+      if (!response.ok) throw new Error('Failed to update product');
+      return await response.json() as Product;
     } catch (error) {
-      console.error('Firebase updateProduct error:', error);
+      console.error('updateProduct error:', error);
       throw error;
     }
   },
 
   async deleteProduct(id: string) {
     try {
-      await deleteDoc(doc(firestore, 'products', id));
+      const response = await fetch(`/api/products/${id}`, { method: 'DELETE' });
+      if (!response.ok) throw new Error('Failed to delete product');
       return true;
     } catch (error) {
-      console.error('Firebase deleteProduct error:', error);
+      console.error('deleteProduct error:', error);
       throw error;
     }
   },
@@ -41,35 +44,43 @@ export const db = {
     try {
       const orderData = {
         ...order,
-        date: new Date().toISOString(),
         items: items
       };
-      const docRef = await addDoc(collection(firestore, 'orders'), orderData);
-      return { id: docRef.id, ...orderData };
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData),
+      });
+      if (!response.ok) throw new Error('Failed to create order');
+      return await response.json() as Order;
     } catch (error) {
-      console.error('Firebase createOrder error:', error);
+      console.error('createOrder error:', error);
       throw error;
     }
   },
 
   async getOrders() {
     try {
-      const q = query(collection(firestore, 'orders'), orderBy('date', 'desc'));
-      const snapshot = await getDocs(q);
-      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Order[];
+      const response = await fetch('/api/orders');
+      if (!response.ok) throw new Error('Failed to fetch orders');
+      return await response.json() as Order[];
     } catch (error) {
-      console.error('Firebase getOrders error:', error);
+      console.error('getOrders error:', error);
       throw error;
     }
   },
 
   async updateOrderStatus(id: string, status: Order['status']) {
     try {
-      const docRef = doc(firestore, 'orders', id);
-      await updateDoc(docRef, { status });
+      const response = await fetch(`/api/orders/${id}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status }),
+      });
+      if (!response.ok) throw new Error('Failed to update order status');
       return true;
     } catch (error) {
-      console.error('Firebase updateOrderStatus error:', error);
+      console.error('updateOrderStatus error:', error);
       throw error;
     }
   },
@@ -77,25 +88,26 @@ export const db = {
   // --- Settings ---
   async getSettings() {
     try {
-      const docRef = doc(firestore, 'settings', 'global');
-      const snapshot = await getDoc(docRef);
-      if (snapshot.exists()) {
-        return snapshot.data() as AppSettings;
-      }
-      return null;
+      const response = await fetch('/api/settings');
+      if (!response.ok) throw new Error('Failed to fetch settings');
+      return await response.json() as AppSettings | null;
     } catch (error) {
-      console.error('Firebase getSettings error:', error);
+      console.error('getSettings error:', error);
       throw error;
     }
   },
 
   async updateSettings(settings: AppSettings) {
     try {
-      const docRef = doc(firestore, 'settings', 'global');
-      await setDoc(docRef, settings);
-      return settings;
+      const response = await fetch('/api/settings', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(settings),
+      });
+      if (!response.ok) throw new Error('Failed to update settings');
+      return await response.json() as AppSettings;
     } catch (error) {
-      console.error('Firebase updateSettings error:', error);
+      console.error('updateSettings error:', error);
       throw error;
     }
   },
@@ -103,32 +115,37 @@ export const db = {
   // --- Reviews ---
   async getReviews() {
     try {
-      const q = query(collection(firestore, 'reviews'), orderBy('date', 'desc'));
-      const snapshot = await getDocs(q);
-      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Review[];
+      const response = await fetch('/api/reviews');
+      if (!response.ok) throw new Error('Failed to fetch reviews');
+      return await response.json() as Review[];
     } catch (error) {
-      console.error('Firebase getReviews error:', error);
+      console.error('getReviews error:', error);
       throw error;
     }
   },
 
   async updateReview(review: Review) {
     try {
-      const docRef = doc(firestore, 'reviews', review.id);
-      await setDoc(docRef, review);
-      return review;
+      const response = await fetch(`/api/reviews/${review.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(review),
+      });
+      if (!response.ok) throw new Error('Failed to update review');
+      return await response.json() as Review;
     } catch (error) {
-      console.error('Firebase updateReview error:', error);
+      console.error('updateReview error:', error);
       throw error;
     }
   },
 
   async deleteReview(id: string) {
     try {
-      await deleteDoc(doc(firestore, 'reviews', id));
+      const response = await fetch(`/api/reviews/${id}`, { method: 'DELETE' });
+      if (!response.ok) throw new Error('Failed to delete review');
       return true;
     } catch (error) {
-      console.error('Firebase deleteReview error:', error);
+      console.error('deleteReview error:', error);
       throw error;
     }
   },
@@ -136,32 +153,37 @@ export const db = {
   // --- Promo Codes ---
   async getPromoCodes() {
     try {
-      const q = query(collection(firestore, 'promo_codes'), orderBy('code', 'asc'));
-      const snapshot = await getDocs(q);
-      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as PromoCode[];
+      const response = await fetch('/api/promo-codes');
+      if (!response.ok) throw new Error('Failed to fetch promo codes');
+      return await response.json() as PromoCode[];
     } catch (error) {
-      console.error('Firebase getPromoCodes error:', error);
+      console.error('getPromoCodes error:', error);
       throw error;
     }
   },
 
   async updatePromoCode(promoCode: PromoCode) {
     try {
-      const docRef = doc(firestore, 'promo_codes', promoCode.id);
-      await setDoc(docRef, promoCode);
-      return promoCode;
+      const response = await fetch(`/api/promo-codes/${promoCode.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(promoCode),
+      });
+      if (!response.ok) throw new Error('Failed to update promo code');
+      return await response.json() as PromoCode;
     } catch (error) {
-      console.error('Firebase updatePromoCode error:', error);
+      console.error('updatePromoCode error:', error);
       throw error;
     }
   },
 
   async deletePromoCode(id: string) {
     try {
-      await deleteDoc(doc(firestore, 'promo_codes', id));
+      const response = await fetch(`/api/promo-codes/${id}`, { method: 'DELETE' });
+      if (!response.ok) throw new Error('Failed to delete promo code');
       return true;
     } catch (error) {
-      console.error('Firebase deletePromoCode error:', error);
+      console.error('deletePromoCode error:', error);
       throw error;
     }
   },
@@ -169,22 +191,26 @@ export const db = {
   // --- Customers ---
   async getCustomers() {
     try {
-      const q = query(collection(firestore, 'customers'), orderBy('totalSpent', 'desc'));
-      const snapshot = await getDocs(q);
-      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Customer[];
+      const response = await fetch('/api/customers');
+      if (!response.ok) throw new Error('Failed to fetch customers');
+      return await response.json() as Customer[];
     } catch (error) {
-      console.error('Firebase getCustomers error:', error);
+      console.error('getCustomers error:', error);
       throw error;
     }
   },
 
   async updateCustomer(customer: Customer) {
     try {
-      const docRef = doc(firestore, 'customers', customer.id);
-      await setDoc(docRef, customer);
-      return customer;
+      const response = await fetch(`/api/customers/${customer.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(customer),
+      });
+      if (!response.ok) throw new Error('Failed to update customer');
+      return await response.json() as Customer;
     } catch (error) {
-      console.error('Firebase updateCustomer error:', error);
+      console.error('updateCustomer error:', error);
       throw error;
     }
   },
@@ -192,9 +218,11 @@ export const db = {
   // --- Connection Test ---
   async testConnection() {
     try {
-      const docRef = doc(firestore, 'settings', 'global');
-      await getDoc(docRef);
-      return { success: true, message: 'Successfully connected to Firebase!' };
+      const response = await fetch('/api/settings');
+      if (response.ok) {
+        return { success: true, message: 'Successfully connected to API backend!' };
+      }
+      return { success: false, message: `Connection error: ${response.statusText}` };
     } catch (error: any) {
       return { success: false, message: `Connection error: ${error.message || 'Unknown error'}` };
     }

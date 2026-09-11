@@ -42,7 +42,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   // --- Admin & Data State ---
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(true);
   
   const [products, setProducts] = useState<Product[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
@@ -51,17 +51,18 @@ export default function App() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [settings, setSettings] = useState<AppSettings>(() => ({
     ...INITIAL_SETTINGS,
-    categories: INITIAL_SETTINGS.categories || ['Heavy Pashmina', 'Light Pashmina', 'Shawls']
+    categories: INITIAL_SETTINGS.categories || ['Bags', 'Cardholders', 'Sleeves'],
   }));
 
   // --- Auth Effect ---
   useEffect(() => {
-    import('./lib/firebase').then(({ auth }) => {
-      const unsubscribe = auth.onAuthStateChanged((user) => {
-        setIsAdminLoggedIn(!!user);
-      });
-      return () => unsubscribe();
-    });
+    // Auth disabled
+    // import('./lib/firebase').then(({ auth }) => {
+    //   const unsubscribe = auth.onAuthStateChanged((user) => {
+    //     setIsAdminLoggedIn(!!user);
+    //   });
+    //   return () => unsubscribe();
+    // });
   }, []);
 
   // --- Persistence Effects ---
@@ -126,19 +127,19 @@ export default function App() {
   }, [isAdminLoggedIn]);
 
   useEffect(() => {
-    const savedCart = localStorage.getItem('riffa_cart');
+    const savedCart = localStorage.getItem('leatherd_cart');
     if (savedCart) {
       try { setCart(JSON.parse(savedCart)); } catch (e) { console.error(e); }
     }
   }, []);
 
-  useEffect(() => { localStorage.setItem('riffa_cart', JSON.stringify(cart)); }, [cart]);
-  useEffect(() => { localStorage.setItem('riffa_products', JSON.stringify(products)); }, [products]);
-  useEffect(() => { localStorage.setItem('riffa_orders', JSON.stringify(orders)); }, [orders]);
-  useEffect(() => { localStorage.setItem('riffa_customers', JSON.stringify(customers)); }, [customers]);
-  useEffect(() => { localStorage.setItem('riffa_promo_codes', JSON.stringify(promoCodes)); }, [promoCodes]);
-  useEffect(() => { localStorage.setItem('riffa_reviews', JSON.stringify(reviews)); }, [reviews]);
-  useEffect(() => { localStorage.setItem('riffa_settings', JSON.stringify(settings)); }, [settings]);
+  useEffect(() => { localStorage.setItem('leatherd_cart', JSON.stringify(cart)); }, [cart]);
+  useEffect(() => { localStorage.setItem('leatherd_products', JSON.stringify(products)); }, [products]);
+  useEffect(() => { localStorage.setItem('leatherd_orders', JSON.stringify(orders)); }, [orders]);
+  useEffect(() => { localStorage.setItem('leatherd_customers', JSON.stringify(customers)); }, [customers]);
+  useEffect(() => { localStorage.setItem('leatherd_promo_codes', JSON.stringify(promoCodes)); }, [promoCodes]);
+  useEffect(() => { localStorage.setItem('leatherd_reviews', JSON.stringify(reviews)); }, [reviews]);
+  useEffect(() => { localStorage.setItem('leatherd_settings', JSON.stringify(settings)); }, [settings]);
 
   // --- Navigation & Hash Effects ---
   useEffect(() => {
@@ -313,12 +314,8 @@ export default function App() {
   };
 
   const handleAdminLogout = async () => {
-    try {
-      const { auth } = await import('./lib/firebase');
-      await auth.signOut();
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
+    // Session is managed on the client for this simple password check
+
     setIsAdminLoggedIn(false);
     setCurrentPage('home');
     window.location.hash = '';
@@ -394,7 +391,7 @@ export default function App() {
       <div className="min-h-screen bg-offwhite flex items-center justify-center">
         <div className="text-center space-y-4">
           <div className="w-12 h-12 border-4 border-gold border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-plum/40 text-xs tracking-widest uppercase font-bold">Loading RIFFA Experience...</p>
+          <p className="text-plum/40 text-xs tracking-widest uppercase font-bold">Loading LEATHERD Experience...</p>
         </div>
       </div>
     );

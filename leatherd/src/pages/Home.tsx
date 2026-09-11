@@ -34,7 +34,6 @@ export const Home: React.FC<HomeProps> = ({
             alt="Hero Background" 
             className="w-full h-full object-cover scale-105"
           />
-          <div className="absolute inset-0 bg-plum/40 backdrop-blur-[2px]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-offwhite space-y-12">
@@ -44,6 +43,11 @@ export const Home: React.FC<HomeProps> = ({
             transition={{ duration: 1, ease: "easeOut" }}
             className="space-y-6"
           >
+            <img 
+              src={settings.logo} 
+              alt="Leatherd Logo" 
+              className="h-32 md:h-48 w-auto object-contain mx-auto rounded-md shadow-lg" 
+            />
             <h1 className="text-6xl md:text-9xl font-serif tracking-tighter leading-[0.9]">
               Timeless Elegance <br />
               <span className="italic font-light text-gold/90">from Egypt</span>
@@ -78,7 +82,7 @@ export const Home: React.FC<HomeProps> = ({
           <div className="w-20 h-[1px] bg-gold mx-auto" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {(settings.categories || ['Heavy Pashmina', 'Light Pashmina', 'Shawls']).map((cat, idx) => (
+          {(settings.categories || ['Bags', 'Cardholders', 'Sleeves']).map((cat, idx) => (
             <motion.div
               key={cat}
               initial={{ opacity: 0, y: 20 }}
@@ -166,7 +170,7 @@ export const Home: React.FC<HomeProps> = ({
                 <span className="italic font-light">and Heritage</span>
               </h2>
               <p className="text-plum/70 leading-relaxed text-lg">
-                At RIFFA, we believe that every pashmina tells a story. Our journey began in the heart of Cairo, where we sought to revive the ancient art of Egyptian weaving. Each piece is a testament to the skill of our local artisans, combining traditional techniques with modern luxury.
+                At LEATHERD, we believe that every piece tells a story. Our journey began in the heart of Cairo, where we sought to revive the ancient art of leathercraft. Each item is a testament to the skill of our local artisans, combining traditional techniques with modern luxury.
               </p>
               <button 
                 onClick={() => setCurrentPage('about')}
@@ -211,7 +215,7 @@ export const Home: React.FC<HomeProps> = ({
       {/* Newsletter */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-10">
         <div className="space-y-4">
-          <h2 className="text-4xl font-serif tracking-tight">Join the RIFFA Circle</h2>
+          <h2 className="text-4xl font-serif tracking-tight">Join the LEATHERD Circle</h2>
           <p className="text-plum/50 text-sm tracking-wide">Subscribe to receive updates on new collections and exclusive offers.</p>
         </div>
         

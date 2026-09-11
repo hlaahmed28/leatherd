@@ -75,13 +75,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             {logo && !logoError ? (
               <img 
                 src={logo} 
-                alt="RIFFA Logo" 
-                className="h-14 w-auto object-contain"
+                alt="Leatherd Logo" 
+                className="h-14 w-auto object-contain rounded-sm"
                 referrerPolicy="no-referrer"
                 onError={() => setLogoError(true)}
               />
             ) : (
-              <h1 className="text-2xl font-serif font-bold text-plum tracking-[0.2em]">RIFFA</h1>
+              <h1 className="text-2xl font-serif font-bold text-plum tracking-[0.2em]">LEATHERD</h1>
             )}
           </div>
 

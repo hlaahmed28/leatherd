@@ -176,7 +176,7 @@ export const Cart: React.FC<CartProps> = ({
           </div>
           <div className="space-y-4">
             <h2 className="text-3xl font-serif tracking-tight">Your bag is empty</h2>
-            <p className="text-plum/40 text-sm tracking-wide max-w-xs mx-auto">Discover our latest collections and find your perfect pashmina.</p>
+            <p className="text-plum/40 text-sm tracking-wide max-w-xs mx-auto">Discover our latest collections and find your perfect piece.</p>
           </div>
           <button 
             onClick={() => setCurrentPage('shop')}
